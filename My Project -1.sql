@@ -46,7 +46,7 @@ ranked_ratings as (
 					)
 
 SELECT type, 
-		rating as most_occuring_rating
+		rating as most_occurring_rating
 FROM ranked_ratings
 WHERE ratings_rank = 1;
 
@@ -59,7 +59,7 @@ WHERE type = 'Movie' AND release_year = 2020;
 
 --4. Find the top 5 countries with the most content on Netflix
 
-SELECT TRIM(UNNEST(STRING_TO_ARRAY(country, ','))) AS counrty, 
+SELECT TRIM(UNNEST(STRING_TO_ARRAY(country, ','))) AS country, 
 		COUNT(show_id) as total_content
 FROM netflix 
 GROUP BY TRIM(UNNEST(STRING_TO_ARRAY(country, ',')))
@@ -92,7 +92,7 @@ ORDER BY new_date_added DESC;
 
 SELECT *
 FROM (SELECT title, 
-				TRIM(UNNEST(STRING_TO_ARRAY(director, ''))) as director_name
+				TRIM(UNNEST(STRING_TO_ARRAY(director, ','))) as director_name
 	   FROM netflix) as t
 WHERE director_name = 'Rajiv Chilaka';
 
